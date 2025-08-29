@@ -3,6 +3,11 @@
     <div class="row">
       <div class="col-md-3 col-sm-6 mb-3" v-for="(topic, index) in topics" :key="index">
           <b-card class="h-100 card-shadow">
+          <div style="position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; font-size: 1.1rem; cursor: pointer;">
+            <b-icon icon="pencil" variant="primary" role="button"></b-icon>
+            <b-icon icon="trash" variant="danger" role="button"   @click="deleteTopic(index)"></b-icon>
+          </div>
+
          
           <div class="d-flex align-items-center mb-2">
             <span 
@@ -31,6 +36,12 @@ export default {
     topics() {
       return this.$store.state.topics
     }
+  },
+  methods:{
+     deleteTopic(index) {
+      this.$store.dispatch('deleteTopic', index)
+    }
+
   }
 }
 </script>
